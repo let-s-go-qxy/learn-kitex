@@ -1,0 +1,26 @@
+syntax = "proto3";
+package user;
+option go_package = "user";
+
+message UserRequest {
+  int64 user_id = 1; // 用户id
+  string token = 2; // 用户鉴权token
+}
+
+message UserResponse {
+   int32 status_code = 1; // 状态码，0-成功，其他值-失败
+   optional string status_msg = 2; // 返回状态描述
+   User user = 3; // 用户信息
+}
+
+message User {
+   int64 id = 1; // 用户id
+   string name = 2; // 用户名称
+   optional int64 follow_count = 3; // 关注总数
+   optional int64 follower_count = 4; // 粉丝总数
+   bool is_follow = 5; // true-已关注，false-未关注
+}
+
+service UserService {
+  rpc UserInfo (UserRequest) returns (UserRequest) {}
+}
