@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	user "learnkitex/kitex_gen/user"
+	user "learnkitex/kitex_gen/api"
 )
 
 // UserServiceImpl implements the last service interface defined in the IDL.

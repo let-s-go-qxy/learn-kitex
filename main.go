@@ -1,12 +1,18 @@
 package main
 
 import (
-	user "learnkitex/kitex_gen/user/userservice"
+	"github.com/cloudwego/kitex/server"
+	user "learnkitex/kitex_gen/api/userservice"
 	"log"
+	"net"
 )
 
 func main() {
-	svr := user.NewServer(new(UserServiceImpl))
+	addr, _ := net.ResolveTCPAddr("tcp", ":8081")
+	var opts []server.Option
+	opts = append(opts, server.WithServiceAddr(addr))
+
+	svr := user.NewServer(new(UserServiceImpl), opts...)
 
 	err := svr.Run()
 

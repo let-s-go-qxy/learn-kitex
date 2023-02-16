@@ -1,6 +1,6 @@
 syntax = "proto3";
 package user;
-option go_package = "user";
+option go_package = "api";
 
 message UserRequest {
   int64 user_id = 1; // 用户id
@@ -22,5 +22,5 @@ message User {
 }
 
 service UserService {
-  rpc UserInfo (UserRequest) returns (UserRequest) {}
+  rpc UserInfo (UserRequest) returns (UserResponse) {}
 }
